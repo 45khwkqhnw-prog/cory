@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@CEEJAYY</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      background: url(https://lastappfiles.s3.us-west-1.amazonaws.com/apps/31fa57c4-06d2-4312-9818-06d1449e1875/users/357cbeba-dce0-4f75-9835-83ffceda6486/8ac7f77c224300cabb8a03b64498a864-B084FC4D-3CC1-4B35-9645-24D4B4822BBD.gif) center/cover fixed;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container { 
+      max-width: 28rem; 
+      width: 100%;
+      margin: 0 auto; 
+      min-height: 100vh; 
+      padding: 4rem 1rem 6rem; 
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile { text-align: center; margin-bottom: 2rem; width: 100%; }
+    .profile-pic { width: 7rem; height: 7rem; border-radius: 50%; border: 4px solid rgba(255,255,255,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.3); overflow: hidden; margin: 0 auto 1rem; background: rgba(0,0,0,0.2); backdrop-filter: blur(8px); }
+    .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+    .username { font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+    .bio { font-size: 1rem; color: rgba(255,255,255,0.9); margin-top: 0.75rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); max-width: 24rem; margin-left: auto; margin-right: auto; line-height: 1.5; }
+    .links { 
+      position: relative; 
+      width: 100%; 
+      max-width: 28rem;
+      height: 50rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .link-btn { 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 0.5rem; 
+      padding: 0 1rem; 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: transform 0.2s; 
+      cursor: pointer;
+      width: 100%;
+      max-width: 280px;
+    }
+    .link-btn:hover { transform: scale(1.05) translateY(-2px); }
+    .clock { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-center; 
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 280px;
+    }
+    .controls { position: fixed; top: 1rem; right: 1rem; z-index: 50; display: flex; gap: 0.5rem; }
+    .control-btn { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-center; transition: background 0.2s; }
+    .control-btn:hover { background: rgba(0,0,0,0.7); }
+    .music-btn { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; width: 3rem; height: 3rem; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .music-btn.playing { background: rgba(59, 130, 246, 0.8); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-pulse { animation: pulse 2s infinite; }
+    .animate-bounce { animation: bounce 1s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button class="control-btn" onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied!'))">
+      <i class="fa fa-share"></i>
+    </button>
+  </div>
+  
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+    <i class="fa fa-music"></i>
+  </button>
+  <audio id="bgMusic" src="https://lastappfiles.s3.us-west-1.amazonaws.com/apps/31fa57c4-06d2-4312-9818-06d1449e1875/users/357cbeba-dce0-4f75-9835-83ffceda6486/218a0d985192b7e07cb6c0942fe29853-Flawed Mangoes - Swimming.mp3" loop></audio>
+  
+  <div class="container">
+    <div class="profile">
+      <div class="profile-pic">
+        <img src="https://lastappfiles.s3.us-west-1.amazonaws.com/apps/31fa57c4-06d2-4312-9818-06d1449e1875/users/357cbeba-dce0-4f75-9835-83ffceda6486/acea52c5725b9319b2130b28e8662827-IMG_0817.webp" alt="CEEJAYY">
+      </div>
+      <h1 class="username">@CEEJAYY</h1>
+      <p class="bio">AGE 17</p>
+    </div>
+    <div class="links">
+      
+        <a href="https://youtube.com/@corionte?si=27KAUA1zq03tWVAU" target="_blank" rel="noopener noreferrer" class="link-btn animate-bounce" style="height: 60px; background-color: #244cf0; color: #ffffff; border-radius: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: sans-serif; backdrop-filter: none; background-image: url(https://lastappfiles.s3.us-west-1.amazonaws.com/apps/31fa57c4-06d2-4312-9818-06d1449e1875/users/357cbeba-dce0-4f75-9835-83ffceda6486/04dc985ce648f22672101f68097f0f6e-IMG_0817.webp); background-size: cover; background-position: center;">
+          <i class="fa-brands fa-youtube" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);"></i>
+          <span style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">youtube</span>
+        </a>
+      
+        <a href="https://www.tiktok.com/@ceejayyyy04?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="link-btn animate-bounce" style="height: 60px; background-color: #1c00f0; color: #ffffff; border-radius: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: sans-serif; backdrop-filter: none; background-image: url(https://lastappfiles.s3.us-west-1.amazonaws.com/apps/31fa57c4-06d2-4312-9818-06d1449e1875/users/357cbeba-dce0-4f75-9835-83ffceda6486/a56d49ac5427c65863beb5ce41f5ab7b-IMG_0817.webp); background-size: cover; background-position: center;">
+          <i class="fa-brands fa-tiktok" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);"></i>
+          <span style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">tiktok</span>
+        </a>
+      
+      
+        <div class="clock" id="clock-clock_1777154188887" style="height: 80px; color: #415bc3; background-color: #1d3787; border-radius: 12px; font-size: 1.5rem; backdrop-filter: none;">
+          <div class="font-bold" id="time-clock_1777154188887"></div>
+          <div style="font-size: 0.75em; opacity: 0.8; margin-top: 0.25rem;">America/Chicago</div>
+        </div>
+      
+    </div>
+  </div>
+  
+  <script>
+    let isPlaying = false;
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        btn.classList.remove('playing');
+        btn.innerHTML = '<i class="fa fa-music"></i>';
+      } else {
+        audio.play();
+        btn.classList.add('playing');
+        btn.innerHTML = '<i class="fa fa-pause"></i>';
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+  
+  <script>
+    
+      setInterval(() => {
+        const now = new Date();
+        const formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/Chicago',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        document.getElementById('time-clock_1777154188887').textContent = formatter.format(now);
+      }, 1000);
+    
+  </script>
+</body>
+</html>
